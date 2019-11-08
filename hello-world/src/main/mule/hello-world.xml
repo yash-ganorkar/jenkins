@@ -8,7 +8,6 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="5bb53c88-ab3c-432d-8c20-10ea61c60cec" >
 		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
-	<configuration-properties doc:name="Configuration properties" doc:id="fa87b5c6-5877-4ff4-b993-9f116b1b74db" file="init.properties" />
 	<flow name="mule-jenkins-pipelineFlow" doc:id="9706d017-851f-4ab5-b837-7c5a04979308" >
 		<http:listener doc:name="Listener" doc:id="bd8ed338-2426-4315-80a6-313da8532328" config-ref="HTTP_Listener_config" path="/hello"/>
 		<logger level="INFO" doc:name="Logger" doc:id="fec9a571-8084-4479-b076-38542367ce32" message='#["Hello World..."]'/>
