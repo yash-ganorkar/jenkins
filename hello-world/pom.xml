@@ -22,27 +22,40 @@
 		<anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
 	
 	</properties>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<cloudHubDeployment>
-								<muleVersion>${mule.version}</muleVersion>
-								<username>${anypoint.username}</username>
-								<password>${anypoint.password}</password>
-								<applicationName>hello-world</applicationName>
-								<environment>${cloundhub.env}</environment>
-								<uri>${anypoint.uri}</uri>
-					</cloudHubDeployment>				
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
+	<profiles>
+		<profile>
+			<id>cloudhub</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+										<muleVersion>${mule.version}</muleVersion>
+										<username>${anypoint.username}</username>
+										<password>${anypoint.password}</password>
+										<applicationName>hello-world</applicationName>
+										<environment>${cloundhub.env}</environment>
+										<uri>${anypoint.uri}</uri>
+							</cloudHubDeployment>				
+						</configuration>
+						<executions>
+							<execution>
+								<id>deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<dependencies>
         <dependency>
             <groupId>org.mule.connectors</groupId>
