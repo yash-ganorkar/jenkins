@@ -9,14 +9,18 @@
 
 	<name>hello-world</name>
 
-    <properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.2.1</app.runtime>
-		<mule.maven.plugin.version>3.2.7</mule.maven.plugin.version>
-	</properties>
+		<mule.version>4.2.1</mule.version>
 
+		<anypoint.username>${env.ANYPOINT_USERNAME}</anypoint.username>
+		<anypoint.password>${env.ANYPOINT_PASSWORD}</anypoint.password>
+		<cloundhub.env>Sandbox</cloundhub.env>
+		<anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
+	
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -26,13 +30,13 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${app.runtime}</muleVersion>
-						<username>${username}</username>
-						<password>${password}</password>
-						<applicationName>${project.artifactId}</applicationName>
-						<environment>Sandbox</environment>					
-					</cloudHubDeployment>
+								<muleVersion>${mule.version}</muleVersion>
+								<username>${anypoint.username}</username>
+								<password>${anypoint.password}</password>
+								<applicationName>hello-world</applicationName>
+								<environment>${cloundhub.env}</environment>
+								<uri>${anypoint.uri}</uri>
+					</cloudHubDeployment>				
 				</configuration>
 			</plugin>
 		</plugins>
