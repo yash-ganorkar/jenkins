@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="88d829a9-d98b-4d5b-8c9f-77be2082b2ee" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="5bb53c88-ab3c-432d-8c20-10ea61c60cec" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
-	<flow name="hello-worldFlow" doc:id="b75f851c-e1c8-4489-8129-263b6024385e" >
-		<http:listener doc:name="Listener" doc:id="56337468-78c0-43d6-899f-3c8a6e67e1e0" config-ref="HTTP_Listener_config" path="/helloworld"/>
-		<set-payload value='#[output application/json --- {
-	message: "hello-world"
-}]' doc:name="Set Payload" doc:id="5634e26d-5e21-44d1-8b3c-a4439af623a4" />
+	<configuration-properties doc:name="Configuration properties" doc:id="fa87b5c6-5877-4ff4-b993-9f116b1b74db" file="init.properties" />
+	<flow name="mule-jenkins-pipelineFlow" doc:id="9706d017-851f-4ab5-b837-7c5a04979308" >
+		<http:listener doc:name="Listener" doc:id="bd8ed338-2426-4315-80a6-313da8532328" config-ref="HTTP_Listener_config" path="/hello"/>
+		<set-payload value="#['Hello']" doc:name="Set Payload" doc:id="95d1af8c-a511-40c3-98eb-8801fa7a8c8b" />
+		<tracking:custom-event doc:name="Custom Business Event" doc:id="67714a7c-d0aa-4422-96df-1b7af885c57e" event-name="test-event">
+			<tracking:meta-data key="id" value="1" />
+		</tracking:custom-event>
 	</flow>
 </mule>
