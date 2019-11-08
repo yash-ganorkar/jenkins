@@ -14,7 +14,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<mule.version>4.2.1</mule.version>
-
+		<mule.maven.plugin.version>3.2.7</mule.maven.plugin.version>
+		
 		<anypoint.username>${env.ANYPOINT_USERNAME}</anypoint.username>
 		<anypoint.password>${env.ANYPOINT_PASSWORD}</anypoint.password>
 		<cloundhub.env>Sandbox</cloundhub.env>
