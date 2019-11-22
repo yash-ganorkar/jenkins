@@ -25,14 +25,21 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<cloudHubDeployment>
+					<!--cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
 						<username>${username}</username>
 						<password>${password}</password>
 						<applicationName>${project.artifactId}</applicationName>
 						<environment>${environment}</environment>
-					</cloudHubDeployment>
+					</cloudHubDeployment-->
+					
+                             <deploymentType>arm</deploymentType>
+				             <username>${username}</username>
+				            <password>${password}</password>
+				            <target>mule-server</target>
+				            <environment>${environment}</environment>
+					
 				</configuration>
 			</plugin>
 		</plugins>
